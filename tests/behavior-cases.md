@@ -42,7 +42,7 @@ meaning rather than exact wording.
 - [ ] The Skill name, directory name, README examples, and default prompt agree.
 - [ ] All cases above were reviewed against the current instructions.
 - [ ] Replacement, insertion, punctuation, deletion, mixed-language, and no-highlight cases render as specified without HTML/CSS color tags.
-- [ ] `docs/decision-map.jpg` is legible in a rendered README and contains no private data.
+- [ ] `docs/output-example.png` and `docs/decision-map.jpg` are legible in a rendered README and contain no private data.
 - [ ] Repository files contain no absolute local paths, secrets, placeholders, or private screenshots.
-- [ ] The repository contains only the seven documented release files.
+- [ ] The repository contains only the eight documented release files.
 - [ ] Git status is clean, tag `v0.1.0` remains unchanged, and tag `v0.1.1` points to the highlight release.

@@ -4,6 +4,12 @@ A lightweight, explicitly activated Codex Skill for practicing English through r
 
 一个轻量、显式启用的 Codex Skill，让你在完成真实任务的同时练习英语。它先提供简洁的语言反馈，再完成原始请求，并且只在确实有帮助的地方补充中文解释。
 
+![Example Bilingual Prompt Coach output showing bold changes in the minimal correction](docs/output-example.png)
+
+*Example output — corrected text is highlighted in bold.*
+
+*输出示例——修改后的文字以粗体显示。*
+
 ![Bilingual Prompt Coach decision map](docs/decision-map.jpg)
 
 ## Overview / 简介
