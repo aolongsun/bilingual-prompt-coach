@@ -64,7 +64,7 @@ For up to 150 words of English or mixed-language user prose, use:
 ```markdown
 ### Language practice
 
-Minimal correction: <fix errors while preserving structure, meaning, and voice>
+Minimal correction: <fix errors while preserving structure, meaning, and voice; bold the corrected text>
 
 Natural phrasing: <express the same intent as a fluent speaker would>
 
@@ -99,10 +99,21 @@ each, and give no more than two brief notes unless the user requests a full edit
 - Preserve the user's organization, meaning, claims, voice, tone, and specificity in
   the minimal correction. Fix only genuine grammar, spelling, punctuation, usage, or
   clarity problems.
+- In `Minimal correction`, use standard Markdown bold for the smallest readable span
+  containing each insertion or replacement. Combine adjacent changes into one span.
+  For a punctuation-only change, bold the smallest affected phrase together with the
+  corrected punctuation, such as `**However,**`.
+- Keep pure deletions out of the corrected sentence instead of showing struck-through
+  text. Mention a deletion in `Why` only when it teaches a useful pattern. Do not use
+  HTML, CSS colors, diff blocks, or strikethrough as the default change marker.
 - The natural phrasing may improve idiom, concision, rhythm, and information structure,
   but must not add, remove, soften, or strengthen ideas.
 - Convert primary-language portions of mixed-language prompts into natural target-
-  language prose in both versions unless the user asks to preserve them.
+  language prose in both versions unless the user asks to preserve them. Bold the
+  translated spans in the minimal correction because they replace the original text.
+- Do not add change highlighting to `Natural phrasing`, `Language note`, a primary-
+  language-only `Natural version`, or the task answer. Honor requests such as
+  `no highlighting` or `plain corrections`.
 - Match the task's conversational, professional, academic, or technical register.
   Avoid slang or ornate vocabulary merely to sound native.
 - Write `Why` in the target language and focus on reusable patterns. Add the primary

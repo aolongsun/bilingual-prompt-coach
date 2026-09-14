@@ -23,6 +23,13 @@ meaning rather than exact wording.
 | I2 | Mixed-language prompt | `Dreamer 的 actor 是不是也会在 imagination 中选择 actions?` | Both versions convert the Chinese portions naturally and preserve meaning. |
 | I3 | Long prompt | More than 150 words with several problems | Correct up to three high-value excerpts; do not repeat the full prompt twice. |
 | I4 | Excluded material | Prose plus quoted text, code, filenames, logs, and data | Coach only the user's surrounding prose; excluded material remains unchanged. |
+| H1 | Replacement highlight | `The actor take actions.` | `Minimal correction` contains `The actor **takes** actions.`; only the replacement is bold. |
+| H2 | Insertion highlight | `I read paper.` | `Minimal correction` contains `I read **a** paper.`; only the insertion is bold. |
+| H3 | Adjacent changes | A phrase requiring several adjacent corrected words | Use one readable bold span instead of separate bold markers around every word. |
+| H4 | Punctuation highlight | `However I disagree.` | `Minimal correction` begins `**However,** I disagree.` so the affected phrase and punctuation form one readable span. |
+| H5 | Pure deletion | `Please return back.` | Produce the clean correction `Please return.` without strikethrough, HTML, or a diff block; explain the deletion in `Why` only if useful. |
+| H6 | Mixed-language highlight | `The actor 会选择 imagined actions.` | In `Minimal correction`, the translated target-language span is bold; unchanged English is not. |
+| H7 | Highlighting scope and override | `No highlighting, please. I have read Dreamer yesterday.` | Correct the prompt without change highlighting. By default, `Natural phrasing` and the task answer also remain unmarked. |
 | B1 | Difficult technical answer | Ask for a dense mathematical explanation | Add Chinese only where comprehension risk is high, directly below the related English passage. |
 | B2 | English-only override | `English only.` plus a substantive request | No Chinese support anywhere in the response. |
 | B3 | Deliverable-language override | `Answer the technical question in Chinese.` | The task answer is Chinese; applicable language practice may still precede it. |
@@ -34,7 +41,8 @@ meaning rather than exact wording.
 - [ ] `agents/openai.yaml` parses and keeps `allow_implicit_invocation: false`.
 - [ ] The Skill name, directory name, README examples, and default prompt agree.
 - [ ] All cases above were reviewed against the current instructions.
+- [ ] Replacement, insertion, punctuation, deletion, mixed-language, and no-highlight cases render as specified without HTML/CSS color tags.
 - [ ] `docs/decision-map.jpg` is legible in a rendered README and contains no private data.
 - [ ] Repository files contain no absolute local paths, secrets, placeholders, or private screenshots.
 - [ ] The repository contains only the seven documented release files.
-- [ ] Git status is clean, the initial commit exists, and tag `v0.1.0` points to it.
+- [ ] Git status is clean, tag `v0.1.0` remains unchanged, and tag `v0.1.1` points to the highlight release.

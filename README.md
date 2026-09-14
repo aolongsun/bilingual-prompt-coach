@@ -131,17 +131,19 @@ Expected response shape:
 
 预期输出形态：
 
-```markdown
-### Language practice
+> ### Language practice
+>
+> Minimal correction: It means the actor not only **takes** actions in imagination but also **takes** actions in the environment. Is my understanding correct?
+>
+> Natural phrasing: Does this mean that the actor selects actions both during imagination and in the real environment? Is that understanding correct?
+>
+> Why: With a third-person singular subject, use “takes.” The “not only ... but also ...” structure should be parallel.
+>
+> Your understanding is close. During imagination, the actor selects actions from simulated latent states. In the real environment, it selects an action from the current observed or inferred state...
 
-Minimal correction: It means the actor not only takes actions in imagination but also takes actions in the environment. Is my understanding correct?
+Changed text in `Minimal correction` uses standard Markdown bold instead of custom colors, keeping the emphasis portable across Codex surfaces and GitHub. `Natural phrasing` remains unmarked so the fluent version stays easy to read.
 
-Natural phrasing: Does this mean that the actor selects actions both during imagination and in the real environment? Is that understanding correct?
-
-Why: With a third-person singular subject, use “takes.” The “not only ... but also ...” structure should be parallel.
-
-Your understanding is close. During imagination, the actor selects actions from simulated latent states. In the real environment, it selects an action from the current observed or inferred state...
-```
+`Minimal correction` 使用标准 Markdown 粗体标记修改后的文字，而不是自定义颜色，因此在 Codex 和 GitHub 中都能稳定显示。`Natural phrasing` 保持无标记，让自然表达仍然容易阅读。
 
 The real response should continue and fully answer the question; this example only illustrates the format.
 
