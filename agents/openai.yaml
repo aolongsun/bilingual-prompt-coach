@@ -1,7 +1,7 @@
 interface:
   display_name: "Bilingual Prompt Coach"
-  short_description: "Practice English with concise Chinese support"
-  default_prompt: "Use $bilingual-prompt-coach for this task to improve my English prompts with concise Chinese support until I say \"off\"."
+  short_description: "Practice your target language with bilingual support"
+  default_prompt: "Use $bilingual-prompt-coach for this task to improve my prompts in my chosen target language, using my chosen support language until I say \"off\"."
 
 policy:
   allow_implicit_invocation: false

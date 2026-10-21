@@ -1,170 +1,119 @@
 # Bilingual Prompt Coach
 
-A lightweight, explicitly activated Codex Skill for practicing English through real work. It gives concise language feedback before completing your request and adds Chinese support only where it is genuinely useful.
+[English](README.md) | [简体中文](README.zh-CN.md) | [繁體中文](README.zh-TW.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Español mexicano](README.es-MX.md) | [Português (Brasil)](README.pt-BR.md) | [Türkçe](README.tr.md)
 
-一个轻量、显式启用的 Codex Skill，让你在完成真实任务的同时练习英语。它先提供简洁的语言反馈，再完成原始请求，并且只在确实有帮助的地方补充中文解释。
+Practice a language through real work. This explicitly activated Codex Skill gives concise language feedback before completing your request and adds support in your primary language only where it helps.
 
-![Example Bilingual Prompt Coach output showing bold changes in the minimal correction](docs/output-example.png)
+The defaults are Chinese support and clear B2–C1 American English practice. You can choose both languages, the target-language variety and level, feedback depth, and bilingual balance.
 
-*Example output — corrected text is highlighted in bold.*
+The links above change the documentation language only. They do not change your practice configuration; state your language preferences in the conversation.
 
-*输出示例——修改后的文字以粗体显示。*
+![English example showing corrections in bold](docs/output-example.png)
 
-![Bilingual Prompt Coach decision map](docs/decision-map.jpg)
+*The image shows an English output example. Only changes in the minimal correction are bold.*
 
-## Overview / 简介
+![English decision map for coaching behavior](docs/decision-map.jpg)
 
-Traditional grammar exercises can be difficult to sustain. When using English to ask an AI for help, however, it is also easy to focus on the answer and overlook your own expression. `bilingual-prompt-coach` combines the two activities: you continue studying, researching, coding, or handling everyday tasks while receiving a small amount of reusable language feedback.
+*This decision map is in English and illustrates when coaching appears.*
 
-单独做语法练习很难坚持，而直接用英语向 AI 提问时，又容易只关注答案、忽略自己的表达。`bilingual-prompt-coach` 将这两件事结合起来：你可以继续学习、研究、编程或处理日常任务，同时获得少量、可复用的语言反馈。
+## Overview
 
-The Skill is designed primarily for Chinese-speaking learners practicing American English. Its default target is clear B2-C1 professional English—not unnecessarily complex or overly formal prose.
+Use your everyday requests to study, research, code, or handle other tasks while learning from a small amount of reusable language feedback. The task answer still follows the feedback.
 
-这个 Skill 主要面向以中文为支持语言、希望练习美式英语的学习者。默认目标是清晰的 B2-C1 专业英语，而不是刻意复杂或过度正式的表达。
+- English or other target-language prompts receive a minimal correction and a natural rewrite when useful.
+- Prompts entirely in your primary language receive one natural version in the target language.
+- Mixed-language prompts are converted into the target language while preserving meaning.
+- Clear, natural prompts get a brief note instead of redundant rewrites.
+- Difficult passages can receive short primary-language explanations directly below the relevant passage. Ordinary answers are not translated paragraph by paragraph.
 
-## Highlights / 主要特点
+## Installation
 
-- Shows language practice before the task answer for immediate comparison.
-
-  先展示语言练习，再回答实际问题，便于立即对照原始 prompt。
-
-- Provides a minimal correction and natural phrasing for English or mixed-language prompts.
-
-  对英文或中英混合 prompt 给出“最小修改”和“自然表达”。
-
-- Gives one natural English version for Chinese-only prompts instead of manufacturing a meaningless minimal correction.
-
-  对纯中文 prompt 给出一个自然英文版本，不制造没有意义的“最小修改”。
-
-- Stays active within the current task after one explicit invocation; enter `off` to stop.
-
-  一次显式启用后，在当前任务中持续生效；输入 `off` 即可关闭。
-
-- Adds Chinese support only where difficult technical or abstract material needs it, directly below the related English passage.
-
-  只在技术或抽象内容确实难懂时补充中文，并紧跟在对应英文段落下方。
-
-- Skips greetings, acknowledgements, option selections, and low-value coordination turns such as `implement the plan`.
-
-  跳过问候、确认、选项选择和 `implement the plan` 等低价值协调消息。
-
-- Avoids duplicate coaching when proofreading, rewriting, or translation is the task itself.
-
-  语言校对、改写或翻译本身就是任务时，不重复生成第二套语言反馈。
-
-- Keeps coaching in the final answer only, never in progress updates or Plan Mode deliberation.
-
-  所有练习内容只出现在最终回答开头，不出现在进度消息或 Plan Mode 的中间过程里。
-
-## Installation / 安装
-
-The recommended approach is to use Codex's built-in installer.
-
-推荐在 Codex 中使用内置安装器。
+Ask Codex to use its built-in installer:
 
 ```text
 Use $skill-installer to install the skill from https://github.com/aolongsun/bilingual-prompt-coach.
 ```
 
-Alternatively, clone the repository into your personal skills directory.
-
-也可以将仓库手动克隆到个人 Skill 目录。
+Alternatively, clone the repository into your personal skills directory:
 
 ```bash
 git clone https://github.com/aolongsun/bilingual-prompt-coach ~/.agents/skills/bilingual-prompt-coach
 ```
 
-Restart Codex if the Skill does not appear immediately.
+Restart Codex if the skill does not appear immediately.
 
-如果安装后没有立即显示，请重启 Codex。
+## Usage
 
-## Usage / 使用方式
-
-Explicitly invoke the Skill in the first substantive message of a task.
-
-在任务的第一条实质性消息中显式调用 Skill。
+Explicitly invoke the skill with a substantive request:
 
 ```text
-$bilingual-prompt-coach I just read a paper about Dreamer. Does the actor choose actions both in imagination and in the real environment?
+$bilingual-prompt-coach I read a paper yesterday. Can you help me understand its main argument?
 ```
 
-Later messages in the same task do not need another invocation. The following commands all turn practice mode off.
-
-同一任务中的后续消息不需要重复调用。以下表达都可以关闭练习模式。
+Coaching stays active for the current task without repeated invocation. A new task starts with practice mode off. Any of these turns it off:
 
 ```text
 off
 OFF!
 stop coaching
-关闭英语练习
 ```
 
-An unrelated instruction such as `turn the server off` does not deactivate the Skill. New tasks begin with practice mode disabled.
+You can also ask to stop in your own language. An unrelated instruction such as `turn the server off` does not deactivate coaching.
 
-`turn the server off` 之类与 Skill 无关的表达不会关闭练习模式。新任务默认不继承之前任务的状态。
+## Choose your languages and feedback
 
-## Defaults and overrides / 默认设置与覆盖方式
-
-The defaults are Chinese support, American English practice, and clear B2-C1 professional language. Override any setting naturally, for example:
-
-默认支持语言为中文，练习语言为美式英语，目标水平为清晰的 B2-C1 专业表达。可以直接用自然语言覆盖设置，例如：
+Your primary/support language and target/practice language are separate settings. Set both naturally, including when activating the skill:
 
 ```text
+$bilingual-prompt-coach My primary language is Japanese, and I want to practice English.
+My primary language is Chinese, and I want to practice Japanese.
+Use British English at B1 level.
 English only.
-Use British English.
 More Chinese, please.
-Target B1 English.
 No correction notes.
+No highlighting.
 Correct the full text.
-Use Japanese as the support language.
 ```
 
-An explicitly requested deliverable language takes priority over the default answer language. For example, “请用中文回答” produces a Chinese task answer while retaining an applicable English practice block.
+The latest explicit choice wins within the current task. Without an override, the defaults remain Chinese support and B2–C1 American English. Choosing a different README does not set either language.
 
-如果请求明确指定交付语言，交付语言优先。例如，“请用中文回答”会得到中文任务答案，同时仍可保留适用的英语练习区块。
+An explicitly requested deliverable language takes priority for the task answer. For example, `Answer this question in Chinese` produces a Chinese task answer while retaining any applicable language practice block. Explanatory `Why` notes normally use the target language, with primary-language help only when needed.
 
-## Example / 完整示例
+## Example
 
 Input:
 
-输入：
-
 ```text
-$bilingual-prompt-coach It means the actor not only take actions in the imagination but also take actions in the environment. Is my understanding correct?
+$bilingual-prompt-coach I want practice English while I work. Can you helps me?
 ```
 
-Expected response shape:
-
-预期输出形态：
+Example response:
 
 > ### Language practice
 >
-> Minimal correction: It means the actor not only **takes** actions in imagination but also **takes** actions in the environment. Is my understanding correct?
+> Minimal correction: I want **to** practice English while I work. Can you **help** me?
 >
-> Natural phrasing: Does this mean that the actor selects actions both during imagination and in the real environment? Is that understanding correct?
+> Natural phrasing: I'd like to practice English as I work. Can you help me?
 >
-> Why: With a third-person singular subject, use “takes.” The “not only ... but also ...” structure should be parallel.
+> Why: Use “want to” before a verb. After “can,” use the base form “help.”
 >
-> Your understanding is close. During imagination, the actor selects actions from simulated latent states. In the real environment, it selects an action from the current observed or inferred state...
+> Yes. Send your next work-related request, and I'll give brief language feedback before answering it.
 
-Changed text in `Minimal correction` uses standard Markdown bold instead of custom colors, keeping the emphasis portable across Codex surfaces and GitHub. `Natural phrasing` remains unmarked so the fluent version stays easy to read.
+Only inserted or replaced text in `Minimal correction` is bold. `Natural phrasing` and the task answer have no change highlighting. Ordinary deletions are removed cleanly; there is no default strikethrough, HTML coloring, or diff markup. You can request plain corrections without highlighting.
 
-`Minimal correction` 使用标准 Markdown 粗体标记修改后的文字，而不是自定义颜色，因此在 Codex 和 GitHub 中都能稳定显示。`Natural phrasing` 保持无标记，让自然表达仍然容易阅读。
+For a prompt entirely in your primary language, the block uses `Natural version` instead of `Minimal correction` and `Natural phrasing`.
 
-The real response should continue and fully answer the question; this example only illustrates the format.
+## Boundaries
 
-实际回答会继续完整处理问题；上例只展示输出格式。
+- Coaching appears at most once, at the beginning of the final answer, never in progress updates or intermediate planning. Pure JSON, code, or other required output formats take priority.
+- Greetings, acknowledgements, option selections, attachments without substantive prose, and brief coordination such as `continue` or `implement the plan` do not need a coaching block.
+- Quotations, pasted sources, code, commands, logs, filenames, and data are excluded unless you ask to edit them.
+- When proofreading, rewriting, or translation is itself the requested deliverable, no duplicate coaching block is added unless requested.
+- For prompts longer than 150 words, up to three useful excerpts are selected instead of repeating the full prompt twice. Request a full edit to override this.
+- Rewrites preserve meaning, tone, claims, and specificity. They do not add ideas or make the request stronger or weaker.
 
-## Intentional boundaries / 有意设置的边界
+This is an instruction-only skill with no runtime scripts, external-tool dependencies, or hidden cross-task memory. Practice mode relies on the current conversation. [SKILL.md](SKILL.md) contains the single English instruction set; translated READMEs explain the same skill rather than defining separate versions. The [behavior checklist](tests/behavior-cases.md) documents validation scenarios.
 
-The Skill does not edit quotations, pasted sources, code, commands, logs, filenames, or data unless asked. For prompts longer than 150 words, it selects up to three high-value excerpts instead of repeating the entire prompt twice, unless the user requests a full edit.
-
-除非用户明确提出要求，否则 Skill 不会修改引用、粘贴资料、代码、命令、日志、文件名或数据。对于超过 150 词的 prompt，它只挑选最多三个最值得学习的问题片段，而不会完整重复两遍；用户明确要求全文修改时除外。
-
-This is an instruction-only Skill with no runtime scripts, external tools, or hidden cross-task memory. Task-level persistence relies on the current conversation context, so each new task requires explicit activation.
-
-这是一个 instruction-only Skill：它没有运行时脚本、外部工具或跨任务隐藏记忆。任务内的持续状态依赖当前对话上下文，因此每个新任务都需要重新显式调用。
-
-## License / 许可证
+## License
 
 [MIT](LICENSE)

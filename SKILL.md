@@ -1,6 +1,6 @@
 ---
 name: bilingual-prompt-coach
-description: "Practice American English through everyday prompts with concise corrections, natural rewrites, and selective Chinese support. Use only when explicitly invoked or while practice mode is active in the current task."
+description: "Practice a chosen target language through everyday prompts with concise corrections, natural rewrites, and selective support in a chosen primary language. Use only when explicitly invoked or while practice mode is active in the current task."
 ---
 
 # Bilingual Prompt Coach
@@ -13,8 +13,10 @@ before completing the underlying task.
 
 - Primary/support language: Chinese.
 - Target/practice language: American English at a clear B2-C1 professional level.
-- Let the user override either language, the English variety, level, feedback depth,
+- Let the user override either language, the target-language variety, level, feedback depth,
   or bilingual balance in natural language. The latest explicit choice wins.
+- Reading a translated README does not change the practice configuration. Apply
+  language choices explicitly stated in the conversation.
 - An explicitly requested deliverable language overrides the target-language default.
 
 ## Activation scope
@@ -59,7 +61,7 @@ of the request as well.
 
 ## Coaching format
 
-For up to 150 words of English or mixed-language user prose, use:
+For up to 150 words of target-language or mixed-language user prose, use:
 
 ```markdown
 ### Language practice

@@ -34,6 +34,14 @@ meaning rather than exact wording.
 | B2 | English-only override | `English only.` plus a substantive request | No Chinese support anywhere in the response. |
 | B3 | Deliverable-language override | `Answer the technical question in Chinese.` | The task answer is Chinese; applicable language practice may still precede it. |
 | B4 | Full-edit override | A prompt over 150 words plus `Correct the full text.` | Provide the requested complete correction instead of excerpt selection. |
+| L1 | Unconfigured defaults | `$bilingual-prompt-coach I want practice English.` | Correct the English prompt; retain Chinese support and B2-C1 American English defaults. |
+| L2 | Japanese support, English practice | `$bilingual-prompt-coach 母語は日本語で、英語を練習したいです。Explain a difficult technical concept.` | Task answer and Why use English; any necessary primary-language clarification uses Japanese, not Chinese. |
+| L3 | Chinese support, Japanese practice | `$bilingual-prompt-coach 我的母语言是中文，我想练习日语。昨日、論文を読みますた。内容を説明してください。` | Correct the Japanese to 読みました with the changed span bold; natural phrasing, Why, and task answer use Japanese. Add Chinese only when needed; do not switch to English because the template labels are English. |
+| L4 | Switch during the current task | After L2: `これからは日本語を練習し、中国語を補助言語にしてください。` | Apply the latest explicit choice: Japanese practice and Chinese support. Do not reset activation or change highlighting rules. |
+| L5 | Deliverable override with another target | After L3: `请用中文解释这个技术问题。` | Any applicable Natural version and Why use Japanese; the requested task answer uses Chinese. The practice-language preference is not reset. |
+| L6 | Documentation language is not configuration | Read README.ja.md, then explicitly activate without setting languages | Retain Chinese support and American English practice; reading a translated README is neither a language-setting command nor activation. |
+| L7 | Stop after changing languages | After L4: `言語練習を終了してください。`, then a substantive request | Acknowledge without coaching; later request remains uncoached. |
+| L8 | Same rules in a non-English target | After L3: ask for no highlighting, then request only JSON | Honor no highlighting; omit coaching for the JSON-only turn. |
 
 ## Release checklist
 
@@ -44,5 +52,10 @@ meaning rather than exact wording.
 - [ ] Replacement, insertion, punctuation, deletion, mixed-language, and no-highlight cases render as specified without HTML/CSS color tags.
 - [ ] `docs/output-example.png` and `docs/decision-map.jpg` are legible in a rendered README and contain no private data.
 - [ ] Repository files contain no absolute local paths, secrets, placeholders, or private screenshots.
-- [ ] The repository contains only the eight documented release files.
+- [ ] All eight README pages contain complete installation, usage, configuration, example, boundaries, and license sections.
+- [ ] Every README links to all eight languages in the same order; the Traditional Chinese label is exactly `繁體中文`, without a regional suffix.
+- [ ] All relative documentation and image links resolve, and navigation, non-Latin text, code blocks, and correction bolding render legibly.
+- [ ] Localized pages explain that documentation language does not change practice configuration and that the retained images/examples are in English.
+- [ ] Language-pair examples and interface metadata agree with the defaults and user overrides in SKILL.md.
+- [ ] No translated execution-rule copies, unrelated files, or migration-toolkit snapshot changes are included.
 - [ ] Git status is clean, tag `v0.1.0` remains unchanged, and tag `v0.1.1` points to the highlight release.
